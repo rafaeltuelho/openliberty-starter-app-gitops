@@ -1,24 +1,24 @@
-namePrefix: prod-  
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# namePrefix: prod-
+
+resources:
+- ../../base
+
 commonLabels:
   variant: production
 
-bases:
-- ../../base
+# ref: https://tech.aabouzaid.com/2022/11/set-openapi-patch-strategy-for-kubernetes-custom-resources-kustomize.html
+# openapi:
+#   path: cr-openapi-schema.json
 
-# replace the image tag of the container with latest
-# images:
-#   - name: quay.io/rafaeltuelho/openliberty-starter-app
-#     newTag: prod
+patchesStrategicMerge:
+  - "ol-app-patch.yaml"
 
-# apply a patch to replace the Host of the Route
-patches:
-- patch: |-
-    - op: replace
-      path: /spec/applicationImage
-      value: quay.io/rafaeltuelho/openliberty-starter-app:latest
-    - op: replace
-      path: /spec/replicas
-      value: 2
-  target:
-    kind: OpenLibertyApplication
-
+# patches:
+# - patch: |-
+#     - op: replace
+#       path: /spec/applicationImage
+#       value: quay.io/rafaeltuelho/openliberty-starter-app:latest
+#   target:
+#     kind: OpenLibertyApplication

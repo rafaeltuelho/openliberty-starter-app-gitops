@@ -1,26 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 # namePrefix: staging-
+
+resources:
+- ../../base
+
 commonLabels:
   variant: staging
 
-# apply some patches
-patches:
-- patch: |-
-    - op: replace
-      path: /spec/applicationImage
-      value: quay.io/rafaeltuelho/openliberty-starter-app:latest
-    - op: replace
-      path: /spec/replicas
-      value: 2
-  target:
-    kind: OpenLibertyApplication
+# ref: https://tech.aabouzaid.com/2022/11/set-openapi-patch-strategy-for-kubernetes-custom-resources-kustomize.html
+# openapi:
+#   path: cr-openapi-schema.json
 
-# patchesStrategicMerge:
-# - change-env-value.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-- ../../base
-# images:
-# - digest: sha256:97a32ce12b1bcd53b7ff5b03b7bc3fc75d4c42b97141f939802057b113fcff7d
-#   name: quay.io/rafaeltuelho/openliberty-starter-app:latest
-#   newName: quay.io/rafaeltuelho/openliberty-starter-app:1.0.0
+patchesStrategicMerge:
+  - "ol-app-patch.yaml"
+
+# patches:
+# - patch: |-
+#     - op: replace
+#       path: /spec/applicationImage
+#       value: quay.io/rafaeltuelho/openliberty-starter-app:latest
+#   target:
+#     kind: OpenLibertyApplication

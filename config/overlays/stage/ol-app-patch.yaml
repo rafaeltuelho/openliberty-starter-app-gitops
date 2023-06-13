@@ -1,0 +1,7 @@
+apiVersion: apps.openliberty.io/v1beta2
+kind: OpenLibertyApplication
+metadata:
+  name: openliberty-starter-app
+spec:
+  applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:new-tag'
+  replicas: 2
