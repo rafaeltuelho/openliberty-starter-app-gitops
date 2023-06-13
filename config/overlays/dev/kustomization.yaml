@@ -6,7 +6,7 @@ patches:
 - patch: |-
     - op: replace
       path: /spec/applicationImage
-      value: quay.io/rafaeltuelho/openliberty-starter-app:#NEW_IMG_TAG#
+      value: quay.io/rafaeltuelho/openliberty-starter-app:latest
   target:
     kind: OpenLibertyApplication
 
