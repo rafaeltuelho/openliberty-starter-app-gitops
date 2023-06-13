@@ -1,0 +1,20 @@
+# namePrefix: dev-
+commonLabels:
+  variant: development
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/applicationImage
+      value: quay.io/rafaeltuelho/openliberty-starter-app:#NEW_IMG_TAG#
+  target:
+    kind: OpenLibertyApplication
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+# images:
+# - digest: sha256:231d87efad928061b369b8b8323b6e6f09411688c0d7107ab196b5913cedbf40
+#   name: quay.io/rafaeltuelho/openliberty-starter-app:latest
+#   newName: quay.io/rafaeltuelho/openliberty-starter-app

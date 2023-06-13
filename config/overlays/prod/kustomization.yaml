@@ -1,0 +1,24 @@
+namePrefix: prod-  
+commonLabels:
+  variant: production
+
+bases:
+- ../../base
+
+# replace the image tag of the container with latest
+# images:
+#   - name: quay.io/rafaeltuelho/openliberty-starter-app
+#     newTag: prod
+
+# apply a patch to replace the Host of the Route
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/applicationImage
+      value: quay.io/rafaeltuelho/openliberty-starter-app:#NEW_IMG_TAG#
+    - op: replace
+      path: /spec/replicas
+      value: #REPLICAS_COUNT#
+  target:
+    kind: OpenLibertyApplication
+

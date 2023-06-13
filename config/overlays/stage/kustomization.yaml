@@ -1,0 +1,26 @@
+# namePrefix: staging-
+commonLabels:
+  variant: staging
+
+# apply some patches
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/applicationImage
+      value: quay.io/rafaeltuelho/openliberty-starter-app:#NEW_IMG_TAG#
+    - op: replace
+      path: /spec/replicas
+      value: #REPLICAS_COUNT#
+  target:
+    kind: OpenLibertyApplication
+
+# patchesStrategicMerge:
+# - change-env-value.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+# images:
+# - digest: sha256:97a32ce12b1bcd53b7ff5b03b7bc3fc75d4c42b97141f939802057b113fcff7d
+#   name: quay.io/rafaeltuelho/openliberty-starter-app:latest
+#   newName: quay.io/rafaeltuelho/openliberty-starter-app:1.0.0
