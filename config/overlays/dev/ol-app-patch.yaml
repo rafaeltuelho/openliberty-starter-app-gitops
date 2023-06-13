@@ -3,5 +3,34 @@ kind: OpenLibertyApplication
 metadata:
   name: openliberty-starter-app
 spec:
-  applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:new-tag'
-  replicas: 1
+  applicationVersion: 1.0.0
+  applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:24-3540268eaa53f633810070dd360e6a711f7f644f'
+  replicas: ''
+  service:
+    port: 9443
+    type: ClusterIP
+    annotations:
+      prometheus.io/scrape: 'false'
+  resources: {}
+  pullPolicy: Always
+  probes:
+    readiness: 
+      failureThreshold: 12
+      httpGet:
+        path: /health/ready
+        port: 9080
+      initialDelaySeconds: 5
+      periodSeconds: 3
+      timeoutSeconds: 1
+    liveness:
+      failureThreshold: 12
+      httpGet:
+        path: /health/live
+        port: 9080
+      initialDelaySeconds: 5
+      periodSeconds: 3
+  expose: true
+  route:
+    # Ingress required entries.
+    pathType: 'Prefix'
+    path: '/'
