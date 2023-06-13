@@ -5,7 +5,7 @@ metadata:
 spec:
   applicationVersion: 1.0.0
   applicationImage: '{{IMAGE_NAME}}'
-  replicas: '{{REPLICA_COUNT}}'
+  replicas: {{REPLICA_COUNT}}
   service:
     port: 9443
     type: ClusterIP

@@ -5,7 +5,7 @@ metadata:
 spec:
   applicationVersion: 1.0.0
   applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:25-916314b2e376102edae703f8e122218742d3182f'
-  replicas: '1'
+  replicas: 1
   service:
     port: 9443
     type: ClusterIP
