@@ -11,7 +11,6 @@ spec:
     annotations:
       prometheus.io/scrape: 'false'
   resources: {}
-  manageTLS: true
   pullPolicy: Always
   probes:
     readiness: 
