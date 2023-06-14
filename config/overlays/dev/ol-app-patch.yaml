@@ -4,7 +4,7 @@ metadata:
   name: openliberty-starter-app
 spec:
   applicationVersion: 1.0.0
-  applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:27-ca17185a461eb050188a2d3b8eb302969cadd00d'
+  applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:28-db42e0dcb380ff06f21462c7e120eeaede1439a6'
   replicas: 1
   service:
     port: 9443
