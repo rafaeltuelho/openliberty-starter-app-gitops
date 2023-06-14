@@ -2,6 +2,10 @@ apiVersion: apps.openliberty.io/v1beta2
 kind: OpenLibertyApplication
 metadata:
   name: openliberty-starter-app
+  labels:
+    app.openshift.io/runtime: openliberty
+  annotations:
+    app.openshift.io/vcs-uri: 'https://github.com/rafaeltuelho/openliberty-starter-app'
 spec:
   applicationVersion: 1.0.0
   applicationImage: 'quay.io/rafaeltuelho/openliberty-starter-app:latest'
