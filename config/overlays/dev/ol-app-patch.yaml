@@ -19,16 +19,16 @@ spec:
       httpGet:
         path: /health/ready
         port: 9080
-      initialDelaySeconds: 5
-      periodSeconds: 3
+      initialDelaySeconds: 15
+      periodSeconds: 5
       timeoutSeconds: 1
     liveness:
       failureThreshold: 12
       httpGet:
         path: /health/live
         port: 9080
-      initialDelaySeconds: 5
-      periodSeconds: 3
+      initialDelaySeconds: 15
+      periodSeconds: 5
   expose: true
   route:
     # Ingress required entries.
